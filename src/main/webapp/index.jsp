@@ -1,505 +1,563 @@
+```jsp
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %> 
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>KUMBH-NASHIK</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NashikGo | Explore Nashik</title>
 
 <style>
-
-body{
-font-family:'Segoe UI',Tahoma;
-margin:0;
-padding:0;
-background:#ecf0f1;
+* {
+    box-sizing: border-box;
 }
 
-/* PROFESSIONAL NAVBAR */
-
-header{
-position:fixed;
-top:0;
-width:100%;
-background:rgba(0,102,153,0.65);
-backdrop-filter:blur(10px);
-color:white;
-z-index:1000;
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:15px 60px;
+body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #ecf0f1;
 }
 
-.logo{
-font-size:28px;
-font-weight:bold;
-letter-spacing:1px;
+/* NAVBAR */
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 76, 115, 0.88);
+    backdrop-filter: blur(10px);
+    color: white;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%;
+    gap: 25px;
 }
 
-nav ul{
-list-style:none;
-display:flex;
-gap:30px;
-margin:0;
-padding:0;
+.logo {
+    font-size: 30px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
 }
 
-nav ul li{
-position:relative;
+.logo-link {
+    color: white;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
 }
 
-nav ul li a{
-color:white;
-text-decoration:none;
-font-weight:bold;
-font-size:18px;
-transition:0.3s;
+.logo-icon {
+    color: #ffeb3b;
+    font-size: 27px;
+    margin-right: 3px;
 }
 
-nav ul li a:hover{
-color:#ffeb3b;
+.logo-highlight {
+    color: #ffeb3b;
+}
+
+.logo-link:hover {
+    opacity: 0.9;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    position: relative;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 17px;
+    transition: 0.3s;
+    white-space: nowrap;
+}
+
+nav ul li a:hover {
+    color: #ffeb3b;
 }
 
 /* DROPDOWN */
 
-.dropdown-menu{
-display:none;
-position:absolute;
-top:30px;
-left:0;
-background:white;
-border-radius:6px;
-min-width:180px;
-box-shadow:0 4px 10px rgba(0,0,0,0.3);
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    padding-top: 12px;
+    background: white;
+    border-radius: 6px;
+    min-width: 180px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
 }
 
-.dropdown-menu li{
-padding:10px;
+.dropdown-menu li {
+    padding: 10px 14px;
 }
 
-.dropdown-menu li a{
-color:black;
-font-size:16px;
-display:block;
+.dropdown-menu li a {
+    color: #2c3e50;
+    font-size: 15px;
+    display: block;
 }
 
-.dropdown-menu li:hover{
-background:#f2f2f2;
+.dropdown-menu li:hover {
+    background: #f2f2f2;
 }
 
-.dropdown:hover .dropdown-menu{
-display:block;
+.dropdown:hover .dropdown-menu,
+.dropdown:focus-within .dropdown-menu {
+    display: block;
 }
 
 /* HERO */
 
-.hero{
-background:url('/images/rand_09.jpg') no-repeat center/cover;
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-position:relative;
-color:white;
-text-align:center;
+.hero {
+    background: url('/images/rand_09.jpg') no-repeat center/cover;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    color: white;
+    text-align: center;
+    padding: 130px 20px 60px;
 }
 
-.hero::before{
-content:"";
-position:absolute;
-inset:0;
-background:rgba(0,0,0,0.4);
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
 }
 
-.hero-content{
-position:relative;
-z-index:2;
-animation:fadeInUp 1s ease-out;
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1000px;
+    animation: fadeInUp 1s ease-out;
 }
 
-.hero-content h1{
-font-size:52px;
-margin-bottom:15px;
-text-shadow:3px 3px 10px #000;
+.hero-content h1 {
+    font-size: 52px;
+    margin-bottom: 15px;
+    text-shadow: 3px 3px 10px #000;
 }
 
-.hero-content p{
-font-size:22px;
-margin-bottom:30px;
-text-shadow:1px 1px 4px black;
+.hero-content p {
+    font-size: 22px;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 4px black;
 }
 
 /* HERO BUTTONS */
 
-.hero-buttons a{
-background:#1abc9c;
-color:white;
-padding:10px 20px;
-border-radius:25px;
-margin:8px;
-display:inline-block;
-text-decoration:none;
-font-weight:bold;
-transition:0.3s;
+.hero-buttons a {
+    background: #1abc9c;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 25px;
+    margin: 8px;
+    display: inline-block;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
 }
 
-.hero-buttons a:hover{
-background:#148f77;
+.hero-buttons a:hover {
+    background: #148f77;
+    transform: translateY(-3px);
 }
 
 /* ANIMATION */
 
-@keyframes fadeInUp{
-0%{opacity:0;transform:translateY(40px);}
-100%{opacity:1;transform:translateY(0);}
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* GALLERY */
 
-.gallery-section{
-padding:60px 40px;
-background:#f8f9fa;
-text-align:center;
+.gallery-section {
+    padding: 60px 40px;
+    background: #f8f9fa;
+    text-align: center;
 }
 
-.gallery-section h2{
-font-size:36px;
-margin-bottom:40px;
-color:#2c3e50;
+.gallery-section h2 {
+    font-size: 36px;
+    margin-bottom: 40px;
+    color: #2c3e50;
 }
 
-.gallery-cards{
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
-gap:30px;
+.gallery-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch;
+    gap: 30px;
 }
 
-.card{
-background:white;
-border-radius:12px;
-overflow:hidden;
-width:300px;
-box-shadow:0 4px 12px rgba(0,0,0,0.1);
-transition:transform 0.3s;
+.card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    width: 300px;
+    max-width: 100%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
 }
 
-.card:hover{
-transform:translateY(-8px);
+.card:hover {
+    transform: translateY(-8px);
 }
 
-.card img{
-width:100%;
-height:180px;
-object-fit:cover;
+.card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
 }
 
-.card-info{
-padding:20px;
+.card-info {
+    padding: 20px;
 }
 
-.card-info h3{
-margin:0 0 10px;
-font-size:22px;
+.card-info h3 {
+    margin: 0 0 10px;
+    font-size: 22px;
+    color: #2c3e50;
 }
 
-.card-info p{
-font-size:15px;
-color:#666;
-margin-bottom:15px;
+.card-info p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #666;
+    margin-bottom: 20px;
 }
 
-.card-info a{
-padding:10px 20px;
-background:#1abc9c;
-color:white;
-border-radius:20px;
-text-decoration:none;
-font-weight:bold;
+.card-info a {
+    padding: 10px 20px;
+    background: #1abc9c;
+    color: white;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
 }
 
-.card-info a:hover{
-background:#148f77;
+.card-info a:hover {
+    background: #148f77;
 }
 
 /* FOOTER */
 
-footer{
-background:#34495e;
-color:#fff;
-text-align:center;
-padding:20px;
+footer {
+    background: #34495e;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
 }
 
-/* MOBILE */
-
-@media(max-width:768px){
-
-header{
-flex-direction:column;
+footer p {
+    margin: 0;
 }
 
-nav ul{
-flex-direction:column;
-gap:15px;
+/* TABLET AND MOBILE */
+
+@media (max-width: 900px) {
+    header {
+        flex-direction: column;
+        padding: 15px 20px;
+        gap: 15px;
+    }
+
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px 20px;
+    }
+
+    nav ul li a {
+        font-size: 16px;
+    }
+
+    .hero {
+        padding-top: 170px;
+    }
+
+    .hero-content h1 {
+        font-size: 38px;
+    }
+
+    .hero-content p {
+        font-size: 19px;
+    }
 }
 
-.hero-content h1{
-font-size:32px;
-}
+@media (max-width: 600px) {
+    .logo {
+        font-size: 27px;
+    }
 
-.hero-content p{
-font-size:18px;
-}
+    nav ul {
+        gap: 12px;
+    }
 
-.hero-buttons a{
-display:block;
-margin:10px auto;
-}
+    nav ul li a {
+        font-size: 14px;
+    }
 
-}
+    .hero-content h1 {
+        font-size: 32px;
+    }
 
+    .hero-content p {
+        font-size: 17px;
+    }
+
+    .hero-buttons a {
+        display: block;
+        max-width: 260px;
+        margin: 12px auto;
+    }
+
+    .gallery-section {
+        padding: 40px 15px;
+    }
+
+    .gallery-section h2 {
+        font-size: 28px;
+    }
+
+    .card {
+        width: 100%;
+        max-width: 350px;
+    }
+}
 </style>
 </head>
 
 <body>
 
+<!-- NAVBAR -->
+
 <header>
+    <div class="logo">
+        <a href="/home" class="logo-link">
+            <span class="logo-icon">✦</span>
+            Nashik<span class="logo-highlight">Go</span>
+        </a>
+    </div>
 
-<div class="logo">
-KumbhNagari Nashik
-</div>
+    <nav>
+        <ul>
+            <li><a href="/home">🏠 Home</a></li>
+            <li><a href="/about">ℹ️ About</a></li>
 
-<nav>
-<ul>
+            <li class="dropdown">
+                <a href="/gallery">🖼 Gallery ▾</a>
 
-<li><a href="/home">🏠 Home</a></li>
+                <ul class="dropdown-menu">
+                    <li><a href="/waterfalls">🌊 Waterfalls</a></li>
+                    <li><a href="/forts">🏰 Forts</a></li>
+                    <li><a href="/temples">🛕 Temples</a></li>
+                    <li><a href="/food">🍛 Food</a></li>
+                </ul>
+            </li>
 
-<li><a href="/about">ℹ️ About</a></li>
-
-<li class="dropdown">
-<a href="/gallery">🖼 Gallery ▾</a>
-
-<ul class="dropdown-menu">
-
-<li><a href="/waterfalls">🌊 Waterfalls</a></li>
-
-<li><a href="/forts">🏰 Forts</a></li>
-
-<li><a href="/temples">🛕 Temples</a></li>
-
-<li><a href="/food">🍛 Food</a></li>
-
-</ul>
-
-</li>
-
-<li><a href="/contact">📞 Contact</a></li>
-
-</ul>
-</nav>
-
+            <li><a href="/contact">📞 Contact</a></li>
+        </ul>
+    </nav>
 </header>
 
-<!-- HERO -->
+<!-- HERO SECTION -->
 
 <div class="hero">
+    <div class="hero-content">
+        <h1>Welcome to NashikGo!</h1>
 
-<div class="hero-content">
+        <p>Explore Nashik. Experience Nature, Heritage &amp; Devotion.</p>
 
-<h1>Experience the Beauty of Nashik!</h1>
-
-<p>Nature • Heritage • Devotion</p>
-
-<div class="hero-buttons">
-
-<a href="/waterfalls">🌊 Explore Waterfalls</a>
-
-<a href="/forts">🏰 Explore Forts</a>
-
-<a href="/temples">⛩️ Explore Temples</a>
-
-<a href="/food">🍛 Food</a>
-
-<a href="/hotels">🏨 Stay</a>
-
-<a href="/shopping">🛍️ Shop</a>
-
-<a href="/transport">🚕 Transport</a>
-
-<a href="/makemytrip">🗓️ Plan My Trip</a>
-
+        <div class="hero-buttons">
+            <a href="/waterfalls">🌊 Explore Waterfalls</a>
+            <a href="/forts">🏰 Explore Forts</a>
+            <a href="/temples">🛕 Explore Temples</a>
+            <a href="/food">🍛 Food</a>
+            <a href="/hotels">🏨 Stay</a>
+            <a href="/shopping">🛍️ Shop</a>
+            <a href="/transport">🚕 Transport</a>
+            <a href="/makemytrip">🗓️ Plan My Trip</a>
+        </div>
+    </div>
 </div>
 
-</div>
-
-</div>
-
-<!-- GALLERY -->
+<!-- POPULAR DESTINATIONS -->
 
 <section class="gallery-section">
+    <h2>Explore Popular Destinations</h2>
 
-<h2>Explore Popular Destinations</h2>
+    <div class="gallery-cards">
 
-<div class="gallery-cards">
+        <div class="card">
+            <img src="/images/dugarwadi.jpg" alt="Dugarwadi Waterfall">
+            <div class="card-info">
+                <h3>Dugarwadi Waterfall</h3>
+                <p>Scenic monsoon spot near Trimbak surrounded by dense forest.</p>
+                <a href="/waterfalls">View More</a>
+            </div>
+        </div>
 
-<div class="card">
-<img src="/images/dugarwadi.jpg">
-<div class="card-info">
-<h3>Dugarwadi Waterfall</h3>
-<p>Scenic monsoon spot near Trimbak surrounded by dense forest.</p>
-<a href="/waterfalls">View More</a>
-</div>
-</div>
+        <div class="card">
+            <img src="/images/anjfort.jpg" alt="Anjaneri Fort">
+            <div class="card-info">
+                <h3>Anjaneri Fort</h3>
+                <p>Famous trekking destination in the Nashik-Trimbakeshwar region.</p>
+                <a href="/forts">View More</a>
+            </div>
+        </div>
 
-<div class="card">
-<img src="/images/anjfort.jpg">
-<div class="card-info">
-<h3>Anjeneri Fort</h3>
-<p>Famous trekking fort with Konkan Kada and ancient caves.</p>
-<a href="/forts">View More</a>
-</div>
-</div>
+        <div class="card">
+            <img src="/images/shitkada.jpg" alt="Shitkada Waterfall">
+            <div class="card-info">
+                <h3>Shitkada Waterfall</h3>
+                <p>Enjoy lush green surroundings and a refreshing nature getaway.</p>
+                <a href="/waterfalls">View More</a>
+            </div>
+        </div>
 
-<div class="card">
-<img src="/images/shitkada.jpg">
-<div class="card-info">
-<h3>Shitkada Waterfall</h3>
-<p>Lush green surroundings, perfect for a quick getaway.</p>
-<a href="/waterfalls">View More</a>
-</div>
-</div>
-
-</div>
-
+    </div>
 </section>
 
+<!-- TOP ATTRACTIONS -->
 
 <section class="gallery-section">
+    <h2>Top Attractions in Nashik</h2>
 
-<h2>Top Attraction in nashik</h2>
+    <div class="gallery-cards">
 
-<div class="gallery-cards">
+        <div class="card">
+            <img src="/images/sula.jpg" alt="Sula Vineyards">
+            <div class="card-info">
+                <h3>Sula Vineyards</h3>
+                <p>Discover Nashik's well-known vineyard destination and scenic surroundings.</p>
+                <a href="/food">View More</a>
+            </div>
+        </div>
 
-<div class="card">
-<img src="/images/sula.jpg">
-<div class="card-info">
-<h3> The Sula Wineyards</h3>
-<p>Everything we do at Sula is guided by core values that aim at preserving and enhancing the art of winemaking. We love to make wine, and we are happy to have talented winemakers. All you have to do is to discover them all!,And yes this is one of the best yardss You ever Visited !!</p>
-<a href="/food">View More</a>
-</div>
-</div>
+        <div class="card">
+            <img src="/images/sapt.jpg" alt="Saptashrungi Devi Temple">
+            <div class="card-info">
+                <h3>Saptashrungi Devi Temple</h3>
+                <p>A renowned pilgrimage destination in the Nashik region, surrounded by the Sahyadri hills.</p>
+                <a href="/temples">View More</a>
+            </div>
+        </div>
 
-<div class="card">
-<img src="/images/sapt.jpg">
-<div class="card-info">
-<h3>Saptashrungi Devi Temple</h3>
-<p>पूर्वी दक्षाने बृहस्पती सव नावाचा मोठा यज्ञ केला. या यज्ञाला भगवान शंकर यांना न बोलाविता सर्व देवांना बोलावले. शिवपत्नी सती या यज्ञाला आमंञण नसतांनाही गेली. यज्ञात शिवाला अविर्भाव दिला गेला नाही. त्यामुळे सतीने यज्ञात उडी घेतली. शंकरजींना हे कळाल्यानंतर त्यांनी यज्ञाचा विध्वंस केला. सतीचे कलेवर हातात घेऊन श्री शंकर ञिलोकात हिंडू लागले. ही स्थिती पाहुन विष्णुने सुदर्शन चक्र सोडले व सतीच्या शरीराचे ५१ तुकडे केले. हे तुकडे ५१ ठिकाणी पडले. हीच ५१ शक्तीपीठे म्हणुन गणली जाऊ लागली. महाराष्ट्रात शक्तीचे साडेतीन शक्तीपीठे आहेत.</p>
-<a href="/forts">View More</a>
-</div>
-</div>
+        <div class="card">
+            <img src="/images/pandav.jpg" alt="Pandavleni Caves">
+            <div class="card-info">
+                <h3>Pandavleni Caves</h3>
+                <p>Explore ancient Buddhist rock-cut caves known for their historical and architectural significance.</p>
+                <a href="/forts">View More</a>
+            </div>
+        </div>
 
-<div class="card">
-<img src="/images/pandav.jpg">
-<div class="card-info">
-<h3>The Pandavleni</h3>
-<p>Pandavleni Caves (or Trirashmi Caves) are a group of 24, 2,000-year-old Hinayana Buddhist rock-cut caves on Trirasmi Hill in Nashik, Maharashtra. Built between the 2nd century BCE and 6th century CE, they feature intricate sculptures, viharas (monasteries), and chaityas (prayer halls). A 200-step climb (approx. 15-30 mins) leads to these historical sites. .</p>
-<a href="/waterfalls">View More</a>
-</div>
-</div>
+        <div class="card">
+            <img src="/images/anjfort.jpg" alt="Anjaneri Hill">
+            <div class="card-info">
+                <h3>Anjaneri Hill</h3>
+                <p>A popular trekking destination near Trimbakeshwar, associated with the birthplace of Lord Hanuman.</p>
+                <a href="/forts">View More</a>
+            </div>
+        </div>
 
+        <div class="card">
+            <img src="/images/somavine.jpg" alt="Soma Vine Village">
+            <div class="card-info">
+                <h3>Soma Vine Village</h3>
+                <p>Enjoy a vineyard setting surrounded by the beautiful landscape of Nashik.</p>
+                <a href="/food">View More</a>
+            </div>
+        </div>
 
-<div class="card">
-<img src="/images/anjfort.jpg">
-<div class="card-info">
-<h3>Anjeneri Hill</h3>
-<p><p>Anjaneri fort trek is one of the famous treks in Nasik-Triambakeshwar mountain range of Maharashtra. It is an attraction of Nashik city and Triambakeshwar region.
-Located 20 km away from Nasik and 6 km from Triambakeshwar. It is situated at an altitude of 4263 feet from the sea level.
-The locals believe that the fort is the birthplace of Lord Hanuman. Therefore, it is considered as one of the religious places among Hindu devotees. </p>
-<a href="/forts">View More</a>
-</div>
-</div>
+        <div class="card">
+            <img src="/images/muktidham.jpg" alt="Muktidham Temple">
+            <div class="card-info">
+                <h3>Muktidham Temple</h3>
+                <p>A popular marble temple in Nashik known for its distinctive architecture and religious significance.</p>
+                <a href="/temples">View More</a>
+            </div>
+        </div>
 
+        <div class="card">
+            <img src="/images/mangitungi.jpg" alt="Mangi Tungi">
+            <div class="card-info">
+                <h3>Mangi Tungi</h3>
+                <p>A significant Jain pilgrimage site featuring sacred hills and impressive religious monuments.</p>
+                <a href="/temples">View More</a>
+            </div>
+        </div>
 
+        <div class="card">
+            <img src="/images/kalaram.jpg" alt="Kalaram Temple">
+            <div class="card-info">
+                <h3>Kalaram Temple</h3>
+                <p>A historic temple dedicated to Lord Rama in the Panchavati area of Nashik.</p>
+                <a href="/temples">View More</a>
+            </div>
+        </div>
 
-<div class="card">
-<img src="/images/somavine.jpg">
-<div class="card-info">
-<h3>Soma Vine Village</h3>
-<p>We are one of the largest Vineyard Resort in India with a wine manufacturing unit Vineyard resort with 46 luxurious rooms, vineyard overlooking swimming pools, private villas with swimming pool, luxury spa with wine baths, wine tour and tasting, private dining, amphitheater for destination weddings, private events/parties, barrel house first time ever in India.</p>
-<a href="/food">View More</a>
-</div>
-</div>
+        <div class="card">
+            <img src="/images/harihar.jpg" alt="Harihar Fort">
+            <div class="card-info">
+                <h3>Harihar Fort</h3>
+                <p>A famous hill fort known for its distinctive rock-cut staircase and trekking route.</p>
+                <a href="/forts">View More</a>
+            </div>
+        </div>
 
+        <div class="card">
+            <img src="/images/Brahmfort.jpg" alt="Brahmagiri Hill">
+            <div class="card-info">
+                <h3>Brahmagiri Hill</h3>
+                <p>A sacred hill near Trimbakeshwar associated with the origin of the Godavari River.</p>
+                <a href="/temples">View More</a>
+            </div>
+        </div>
 
-
-<div class="card">
-<img src="/images/muktidham.jpg">
-<div class="card-info">
-<h3>Muktidham Temple</h3>
-<p>The accommodation offers clean and comfortable rooms at affordable prices and other facilities like CCTV, hot water, clean drinking water and extra mattresses. Check-in and check-out times are 24 hours. Choose from the best dharamshalas in Nashik for your trip.
-Nashik is a city on the banks of the sacred Godavari River. Its historical and religious significance is not unknown. The Godavari originates near Trimbakeshwar, not far from Nashik. It is known as the Ganges of the South. Nashik is also known as Haridwar of the south..</p>
-<a href="/temples">View More</a>
-</div>
-</div>
-
-
-
-<div class="card">
-<img src="/images/mangitungi.jpg">
-<div class="card-info">
-<h3>MangiTungi</h3>
-<p>Mangi Tungi is one of the greatest places of Jainism followers. I visited twice here when I was in 3rd std in 1994. Now in 2024 Great place to visit</p>
-<a href="/forts">View More</a>
-</div>
-</div>
-
-
-
-<div class="card">
-<img src="/images/kalaram.jpg">
-<div class="card-info">
-<h3>kalaram Temple</h3>
-<p>Kalaram Temple, is a Hindu temple in Nashik of Nashik district in Maharashtra, dedicated to the deity Rama. It is a temple situated in Panchavati area of the Nashik. The temple derives its name from a black statue of Rama. The literal translation of kalaram is "black Rama".</p>
-<a href="/forts">View More</a>
-</div>
-</div>
-
-<div class="card">
-<img src="/images/harihar.jpg">
-<div class="card-info">
-<h3>Harihar Fort</h3>
-<p>Harihar Fort is a hill fort located about 40 km from Nashik city, 48 km from Igatpuri, 40 km from Ghoti in the Nashik district, of Maharashtra, India. It is an important fort in Nashik district, and was constructed to look upon the trade route through Gonda Ghat</p>
-<a href="/forts">View More</a>
-</div>
-</div>
-
-<div class="card">
-<img src="/images/Brahmfort.jpg">
-<div class="card-info">
-<h3>BrahmGiriHill</h3>
-<p>Brahmagiri Hill, located 31 km from Nashik near Trimbakeshwar in Maharashtra, is a 1,298-meter-high mountain range in the Western Ghats known as the sacred origin of the Godavari River. A popular destination for trekking and pilgrimage, it features over 750 stone steps, temples like Gangadwar and Shiv Jata, and offers panoramic views of Trimbak city</p>
-<a href="/forts">View More</a>
-</div>
-</div>
-
-</div>
-
-
-
-
+    </div>
 </section>
 
-
-
+<!-- FOOTER -->
 
 <footer>
-
-<p>&copy; 2025 Visit Nashik — Created with ❤️ by Anand</p>
-
+    <p>&copy; 2026 NashikGo — Explore Nashik with ❤️ | Created by Anand</p>
 </footer>
 
 </body>
 </html>
+```
